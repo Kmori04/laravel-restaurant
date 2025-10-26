@@ -9,7 +9,7 @@ use App\Models\Customer;
 class CustomerController extends Controller
 {
 
-
+    
     public function getAllCustomers() {
 
         $customerData = Cache::remember('customer_cache', 600, function() {
@@ -40,7 +40,7 @@ class CustomerController extends Controller
             "cust_address" => $request ->custAdd
         ]);
 
-        Cahce::forget('customer_chache');
+        Cache::forget('customer_cache');
 
         return redirect()->route('home');
     }
@@ -51,7 +51,7 @@ class CustomerController extends Controller
 
         $customer->delete();
 
-        Cahce::forget('customer_chache');
+        Cache::forget('customer_cache');
         
         return redirect()->route('home');
     }
